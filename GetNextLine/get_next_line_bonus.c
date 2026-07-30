@@ -1,20 +1,8 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: diatisin <diatisin@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/28 11:14:55 by diatisin          #+#    #+#             */
-/*   Updated: 2026/07/30 11:31:05 by diatisin         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef BUFFER_SIZE
 # define BUFFER_SIZE 42
 #endif
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 static   char *get_line(char **buffer)
 {

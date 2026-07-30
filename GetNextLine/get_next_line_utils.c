@@ -6,7 +6,7 @@
 /*   By: diatisin <diatisin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/28 11:15:25 by diatisin          #+#    #+#             */
-/*   Updated: 2026/07/29 12:39:01 by diatisin         ###   ########.fr       */
+/*   Updated: 2026/07/30 11:30:38 by diatisin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@ size_t  ft_strlen(const char *s)
 {
     size_t  i;
 
-    i = 0
-    while(s[i] != "\0")
+	if(!s)
+		return (0);
+    i = 0;
+    while(s[i] != '\0')
         i++;
     return (i);
 }
@@ -35,11 +37,13 @@ char	*ft_strjoin(const char *s1, char const *s2)
 		return (NULL);
 	i = 0;
 	j = 0;
-	while (s1[i])
-		result[j++] = s1[i++];
+	if (s1)
+		while (s1[i])
+			result[j++] = s1[i++];
 	i = 0;
-	while (s2[i])
-		result[j++] = s2[i++];
+	if (s2)
+		while (s2[i])
+			result[j++] = s2[i++];
 	result[j] = '\0';
 	return (result);
 }
@@ -68,6 +72,8 @@ char	*ft_strdup(const char *s)
 	size_t	length;
 	size_t	i;
 
+	if(!s)
+		return (NULL);
 	i = 0;
 	length = ft_strlen(s);
 	ptr = malloc(sizeof(char) * length + 1);
