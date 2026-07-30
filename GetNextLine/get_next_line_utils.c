@@ -6,22 +6,22 @@
 /*   By: diatisin <diatisin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/28 11:15:25 by diatisin          #+#    #+#             */
-/*   Updated: 2026/07/30 11:30:38 by diatisin         ###   ########.fr       */
+/*   Updated: 2026/07/30 12:13:24 by diatisin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t  ft_strlen(const char *s)
+size_t	ft_strlen(const char *s)
 {
-    size_t  i;
+	size_t	i;
 
-	if(!s)
+	if (!s)
 		return (0);
-    i = 0;
-    while(s[i] != '\0')
-        i++;
-    return (i);
+	i = 0;
+	while (s[i] != '\0')
+		i++;
+	return (i);
 }
 
 char	*ft_strjoin(const char *s1, char const *s2)
@@ -72,7 +72,7 @@ char	*ft_strdup(const char *s)
 	size_t	length;
 	size_t	i;
 
-	if(!s)
+	if (!s)
 		return (NULL);
 	i = 0;
 	length = ft_strlen(s);

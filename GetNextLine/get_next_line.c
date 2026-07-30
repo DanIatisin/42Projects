@@ -6,34 +6,30 @@
 /*   By: diatisin <diatisin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/28 11:14:55 by diatisin          #+#    #+#             */
-/*   Updated: 2026/07/30 11:31:05 by diatisin         ###   ########.fr       */
+/*   Updated: 2026/07/30 12:18:30 by diatisin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUFFER_SIZE
-# define BUFFER_SIZE 42
-#endif
-
 #include "get_next_line.h"
 
-static   char *get_line(char **buffer)
+static char	*get_line(char **buffer)
 {
 	char	*line;
-    char    *temp;
+	char	*temp;
 	int		i;
 
 	i = 0;
-    if(!(*buffer) || !(**buffer))
-        return(NULL);
-    while((*buffer)[i] && (*buffer)[i] != '\n')
-        i++;
-    if((*buffer)[i] == '\n')
-        i++;
-    line = ft_strdup(*buffer);
-	if(!line)
-		return(NULL);
-    line[i] = '\0';
-    temp = ft_strdup(*buffer + i);
+	if (!(*buffer) || !(**buffer))
+		return (NULL);
+	while ((*buffer)[i] && (*buffer)[i] != '\n')
+		i++;
+	if ((*buffer)[i] == '\n')
+		i++;
+	line = ft_strdup(*buffer);
+	if (!line)
+		return (NULL);
+	line[i] = '\0';
+	temp = ft_strdup(*buffer + i);
 	free(*buffer);
 	*buffer = temp;
 	return (line);
@@ -69,14 +65,14 @@ static char	*gnl_read_buffer(int fd, char *buffer)
 
 char	*get_next_line(int fd)
 {
-	static char *buffer;
-    char		*line;
-    
-    if(fd < 0 || BUFFER_SIZE <= 0)
+	static char	*buffer;
+	char		*line;
+
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-    buffer = gnl_read_buffer(fd, buffer);
-		if (!buffer)
-			return (NULL);
-    line = get_line(&buffer);
-    return (line);
+	buffer = gnl_read_buffer(fd, buffer);
+	if (!buffer)
+		return (NULL);
+	line = get_line(&buffer);
+	return (line);
 }

@@ -1,13 +1,27 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: diatisin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/07/30 12:07:15 by diatisin          #+#    #+#             */
+/*   Updated: 2026/07/30 12:07:17 by diatisin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line_bonus.h"
 
-size_t  ft_strlen(const char *s)
+size_t	ft_strlen(const char *s)
 {
-    size_t  i;
+	size_t	i;
 
-    i = 0;
-    while(s[i] != '\0')
-        i++;
-    return (i);
+	if (!s)
+		return (0);
+	i = 0;
+	while (s[i] != '\0')
+		i++;
+	return (i);
 }
 
 char	*ft_strjoin(const char *s1, char const *s2)
@@ -23,11 +37,13 @@ char	*ft_strjoin(const char *s1, char const *s2)
 		return (NULL);
 	i = 0;
 	j = 0;
-	while (s1[i])
-		result[j++] = s1[i++];
+	if (s1)
+		while (s1[i])
+			result[j++] = s1[i++];
 	i = 0;
-	while (s2[i])
-		result[j++] = s2[i++];
+	if (s2)
+		while (s2[i])
+			result[j++] = s2[i++];
 	result[j] = '\0';
 	return (result);
 }
@@ -56,7 +72,7 @@ char	*ft_strdup(const char *s)
 	size_t	length;
 	size_t	i;
 
-	if(!s)
+	if (!s)
 		return (NULL);
 	i = 0;
 	length = ft_strlen(s);

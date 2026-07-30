@@ -1,27 +1,35 @@
-#ifndef BUFFER_SIZE
-# define BUFFER_SIZE 42
-#endif
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: diatisin <diatisin@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/07/30 12:06:57 by diatisin          #+#    #+#             */
+/*   Updated: 2026/07/30 12:18:23 by diatisin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
-static   char *get_line(char **buffer)
+static char	*get_line(char **buffer)
 {
 	char	*line;
-    char    *temp;
+	char	*temp;
 	int		i;
 
 	i = 0;
-    if(!(*buffer) || !(**buffer))
-        return(NULL);
-    while((*buffer)[i] && (*buffer)[i] != '\n')
-        i++;
-    if((*buffer)[i] == '\n')
-        i++;
-    line = ft_strdup(*buffer);
-	if(!line)
-		return(NULL);
-    line[i] = '\0';
-    temp = ft_strdup(*buffer + i);
+	if (!(*buffer) || !(**buffer))
+		return (NULL);
+	while ((*buffer)[i] && (*buffer)[i] != '\n')
+		i++;
+	if ((*buffer)[i] == '\n')
+		i++;
+	line = ft_strdup(*buffer);
+	if (!line)
+		return (NULL);
+	line[i] = '\0';
+	temp = ft_strdup(*buffer + i);
 	free(*buffer);
 	*buffer = temp;
 	return (line);
@@ -57,14 +65,14 @@ static char	*gnl_read_buffer(int fd, char *buffer)
 
 char	*get_next_line(int fd)
 {
-	static char *buffer;
-    char		*line;
-    
-    if(fd < 0 || BUFFER_SIZE <= 0)
+	static char	*buffer[MAX_FD];
+	char		*line;
+
+	if (fd < 0 || fd > MAX_FD || BUFFER_SIZE <= 0)
 		return (NULL);
-    buffer = gnl_read_buffer(fd, buffer);
-		if (!buffer)
-			return (NULL);
-    line = get_line(&buffer);
-    return (line);
+	buffer[fd] = gnl_read_buffer(fd, buffer[fd]);
+	if (!buffer[fd])
+		return (NULL);
+	line = get_line(&buffer[fd]);
+	return (line);
 }
