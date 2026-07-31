@@ -20,8 +20,11 @@ static char	*get_line(char **buffer)
 
 	i = 0;
 	if (!(*buffer) || !(**buffer))
+	{
+		free(*buffer);
 		return (NULL);
-	while ((*buffer)[i] && (*buffer)[i] != '\n')
+	}
+		while ((*buffer)[i] && (*buffer)[i] != '\n')
 		i++;
 	if ((*buffer)[i] == '\n')
 		i++;
