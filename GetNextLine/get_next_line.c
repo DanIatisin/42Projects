@@ -6,7 +6,7 @@
 /*   By: diatisin <diatisin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/28 11:14:55 by diatisin          #+#    #+#             */
-/*   Updated: 2026/07/30 12:18:30 by diatisin         ###   ########.fr       */
+/*   Updated: 2026/07/31 14:21:48 by diatisin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ static char	*get_line(char **buffer)
 
 	i = 0;
 	if (!(*buffer) || !(**buffer))
+	{
+		free(*buffer);
 		return (NULL);
+	}
 	while ((*buffer)[i] && (*buffer)[i] != '\n')
 		i++;
 	if ((*buffer)[i] == '\n')
