@@ -24,7 +24,11 @@ static char	*get_line(char **buffer)
 		free(*buffer);
 		return (NULL);
 	}
+<<<<<<< HEAD
 	while ((*buffer)[i] && (*buffer)[i] != '\n')
+=======
+		while ((*buffer)[i] && (*buffer)[i] != '\n')
+>>>>>>> c9e5553587dfa2d4afeaa586ed37f5c3a70ddf6e
 		i++;
 	if ((*buffer)[i] == '\n')
 		i++;

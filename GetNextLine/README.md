@@ -72,13 +72,17 @@ int main(void)
     int fd;
     char *line;
 
-    fd = open("file.txt", O_RDONLY);
+    fd = open("test.txt", O_RDONLY);
     if (fd < 0)
         return (1);
     
     while ((line = get_next_line(fd)) != NULL)
     {
+<<<<<<< HEAD
         printf("[%s]\n", call, line);
+=======
+        printf("%s"\n, line);
+>>>>>>> c9e5553587dfa2d4afeaa586ed37f5c3a70ddf6e
         free(line);
     }
 
