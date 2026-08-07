@@ -6,7 +6,7 @@
 /*   By: mdecarli <mdecarli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/04 19:04:02 by mdecarli          #+#    #+#             */
-/*   Updated: 2026/08/06 14:23:01 by mdecarli         ###   ########.fr       */
+/*   Updated: 2026/08/07 14:37:56 by mdecarli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	swap(t_stack **stack)
 	second->next = first;
 	first->prev = second;
 	first->next = third;
-	if(third)
+	if (third)
 		third->prev = first;
 }
 

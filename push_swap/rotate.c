@@ -6,7 +6,7 @@
 /*   By: mdecarli <mdecarli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/05 17:02:14 by mdecarli          #+#    #+#             */
-/*   Updated: 2026/08/06 14:12:50 by mdecarli         ###   ########.fr       */
+/*   Updated: 2026/08/07 14:37:16 by mdecarli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,8 @@ static void	rotate(t_stack **stack)
 	while (last->next)
 		last = last->next;
 	last->next = first;
-	first->prev = last
+	first->prev = last;
 	first->next = NULL;
-
 }
 
 void	ra(t_stack **stack_a, int print)
