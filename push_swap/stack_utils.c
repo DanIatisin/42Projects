@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdecarli <mdecarli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/03 17:26:21 by mdecarli          #+#    #+#             */
-/*   Updated: 2026/08/06 13:11:05 by mdecarli         ###   ########.fr       */
+/*   Updated: 2026/08/12 15:58:43 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,10 @@ void	ft_lstadd_back_ps(t_stack **stack, t_stack *new_node)
 
 	if (!stack || !new_node)
 		return ;
+	new_node->next = NULL;
 	if (*stack == NULL)
 	{
+		new_node->prev = NULL;
 		*stack = new_node;
 		return ;
 	}
@@ -41,6 +43,7 @@ void	ft_lstadd_back_ps(t_stack **stack, t_stack *new_node)
 	while (last->next)
 		last = last->next;
 	last->next = new_node;
+	new_node->prev = last;
 }
 
 int	ft_lstsize_ps(t_stack *stack)
@@ -71,4 +74,16 @@ void	ft_free_stack(t_stack **stack)
 		*stack = tmp;
 	}
 	*stack = NULL;
+}
+
+void	print_stack(t_stack *head)
+{
+	t_stack *current;
+
+	current = head;
+	while (current != NULL)
+	{
+		printf("%d\n", current->value);
+		current = current->next;
+	}
 }

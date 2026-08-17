@@ -1,34 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   disorder.c                                         :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/07 14:42:11 by mdecarli          #+#    #+#             */
-/*   Updated: 2026/08/13 10:45:25 by marvin           ###   ########.fr       */
+/*   Created: 2026/06/08 11:43:23 by diatisin          #+#    #+#             */
+/*   Updated: 2026/08/10 14:32:26 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-float	compute_disorder_ps(t_stack *head, int mistake, int total_pairs)
+int	ft_atoi(const char *nptr)
 {
-	t_stack	*node;
+	size_t	i;
+	int		sign;
+	int		result;
 
-	if (ft_lstsize_ps(head) < 2)
-		return (0);
-	while (head != NULL)
+	i = 0;
+	sign = 1;
+	result = 0;
+	while (nptr[i] == ' ' || (nptr[i] >= 9 && nptr[i] <= 13))
+		i++;
+	if (nptr[i] == '-' || nptr[i] == '+')
 	{
-		node = head->next;
-		while (node != NULL)
-		{
-			total_pairs++;
-			if (head->value > node->value)
-				mistake++;
-			node = node->next;
-		}
-		head = head->next;
+		if (nptr[i] == '-')
+			sign *= -1;
+		i++;
 	}
-	return ((float)mistake / total_pairs);
+	while (nptr[i] >= '0' && nptr[i] <= '9')
+	{
+		result = result * 10 + (nptr[i] - '0');
+		i++;
+	}
+	return (result * sign);
 }

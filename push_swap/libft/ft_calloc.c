@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   disorder.c                                         :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/07 14:42:11 by mdecarli          #+#    #+#             */
-/*   Updated: 2026/08/13 10:45:25 by marvin           ###   ########.fr       */
+/*   Created: 2026/06/08 11:44:51 by diatisin          #+#    #+#             */
+/*   Updated: 2026/08/10 14:32:54 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-
-float	compute_disorder_ps(t_stack *head, int mistake, int total_pairs)
+#include "libft.h"
+void	*ft_calloc(size_t nmemb, size_t size)
 {
-	t_stack	*node;
+	size_t	sum;
+	void	*ptr;
 
-	if (ft_lstsize_ps(head) < 2)
-		return (0);
-	while (head != NULL)
-	{
-		node = head->next;
-		while (node != NULL)
-		{
-			total_pairs++;
-			if (head->value > node->value)
-				mistake++;
-			node = node->next;
-		}
-		head = head->next;
-	}
-	return ((float)mistake / total_pairs);
+	if (nmemb == 0 || size == 0)
+		return (malloc(0));
+	if (nmemb > ((size_t)-1) / size)
+		return (NULL);
+	sum = nmemb * size;
+	ptr = malloc(sum);
+	if (ptr == NULL)
+		return (NULL);
+	ft_memset(ptr, 0, sum);
+	return (ptr);
 }

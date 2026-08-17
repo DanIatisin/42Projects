@@ -1,34 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   disorder.c                                         :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/07 14:42:11 by mdecarli          #+#    #+#             */
-/*   Updated: 2026/08/13 10:45:25 by marvin           ###   ########.fr       */
+/*   Created: 2026/06/08 11:48:27 by diatisin          #+#    #+#             */
+/*   Updated: 2026/08/10 14:30:29 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include <stdio.h>
+#include <stdlib.h>
 
-float	compute_disorder_ps(t_stack *head, int mistake, int total_pairs)
+void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	t_stack	*node;
+	unsigned char		*d;
+	const unsigned char	*s;
+	size_t				i;
 
-	if (ft_lstsize_ps(head) < 2)
-		return (0);
-	while (head != NULL)
+	d = (unsigned char *)dest;
+	s = (unsigned char *)src;
+	if (d < s)
 	{
-		node = head->next;
-		while (node != NULL)
+		i = 0;
+		while (i < n)
 		{
-			total_pairs++;
-			if (head->value > node->value)
-				mistake++;
-			node = node->next;
+			d[i] = s[i];
+			i++;
 		}
-		head = head->next;
 	}
-	return ((float)mistake / total_pairs);
+	else
+	{
+		i = n;
+		while (i > 0)
+		{
+			i--;
+			d[i] = s[i];
+		}
+	}
+	return (dest);
 }

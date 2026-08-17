@@ -1,34 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   disorder.c                                         :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/07 14:42:11 by mdecarli          #+#    #+#             */
-/*   Updated: 2026/08/13 10:45:25 by marvin           ###   ########.fr       */
+/*   Created: 2026/06/08 11:46:39 by diatisin          #+#    #+#             */
+/*   Updated: 2026/08/10 14:30:13 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-float	compute_disorder_ps(t_stack *head, int mistake, int total_pairs)
+t_list	*ft_lstlast(t_list *lst)
 {
-	t_stack	*node;
+	t_list	*last_lst;
 
-	if (ft_lstsize_ps(head) < 2)
-		return (0);
-	while (head != NULL)
+	if (!lst)
+		return (NULL);
+	while (lst)
 	{
-		node = head->next;
-		while (node != NULL)
-		{
-			total_pairs++;
-			if (head->value > node->value)
-				mistake++;
-			node = node->next;
-		}
-		head = head->next;
+		if (lst->next == NULL)
+			last_lst = lst;
+		lst = lst->next;
 	}
-	return ((float)mistake / total_pairs);
+	return (last_lst);
 }

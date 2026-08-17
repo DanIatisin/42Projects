@@ -1,34 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   disorder.c                                         :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/07 14:42:11 by mdecarli          #+#    #+#             */
-/*   Updated: 2026/08/13 10:45:25 by marvin           ###   ########.fr       */
+/*   Created: 2026/06/08 11:47:26 by diatisin          #+#    #+#             */
+/*   Updated: 2026/08/10 14:30:15 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-float	compute_disorder_ps(t_stack *head, int mistake, int total_pairs)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_stack	*node;
+	t_list	*new_node;
+	t_list	*new_lst;
 
-	if (ft_lstsize_ps(head) < 2)
-		return (0);
-	while (head != NULL)
+	if (!lst || !f)
+		return (NULL);
+	new_lst = NULL;
+	new_node = NULL;
+	while (lst)
 	{
-		node = head->next;
-		while (node != NULL)
+		new_node = ft_lstnew(f(lst->content));
+		if (new_node == NULL)
 		{
-			total_pairs++;
-			if (head->value > node->value)
-				mistake++;
-			node = node->next;
+			ft_lstclear(&new_lst, del);
+			return (NULL);
 		}
-		head = head->next;
+		ft_lstadd_back(&new_lst, new_node);
+		lst = lst->next;
 	}
-	return ((float)mistake / total_pairs);
+	return (new_lst);
 }

@@ -1,34 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   disorder.c                                         :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/07 14:42:11 by mdecarli          #+#    #+#             */
-/*   Updated: 2026/08/13 10:45:25 by marvin           ###   ########.fr       */
+/*   Created: 2026/06/08 11:48:52 by diatisin          #+#    #+#             */
+/*   Updated: 2026/08/10 14:30:36 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
+#include <unistd.h>
 
-float	compute_disorder_ps(t_stack *head, int mistake, int total_pairs)
+void	ft_putendl_fd(char *s, int fd)
 {
-	t_stack	*node;
-
-	if (ft_lstsize_ps(head) < 2)
-		return (0);
-	while (head != NULL)
+	if (s)
 	{
-		node = head->next;
-		while (node != NULL)
+		while (*s)
 		{
-			total_pairs++;
-			if (head->value > node->value)
-				mistake++;
-			node = node->next;
+			write(fd, s++, 1);
 		}
-		head = head->next;
+		write(fd, "\n", 1);
 	}
-	return ((float)mistake / total_pairs);
 }

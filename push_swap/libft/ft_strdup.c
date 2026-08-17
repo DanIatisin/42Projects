@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   disorder.c                                         :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/07 14:42:11 by mdecarli          #+#    #+#             */
-/*   Updated: 2026/08/13 10:45:25 by marvin           ###   ########.fr       */
+/*   Created: 2026/06/08 11:49:40 by diatisin          #+#    #+#             */
+/*   Updated: 2026/08/10 14:30:51 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-float	compute_disorder_ps(t_stack *head, int mistake, int total_pairs)
+char	*ft_strdup(const char *s)
 {
-	t_stack	*node;
+	char	*ptr;
+	size_t	length;
+	size_t	i;
 
-	if (ft_lstsize_ps(head) < 2)
-		return (0);
-	while (head != NULL)
+	i = 0;
+	length = ft_strlen(s);
+	ptr = malloc(sizeof(char) * length + 1);
+	if (!s)
+		return (NULL);
+	while (s[i] != '\0')
 	{
-		node = head->next;
-		while (node != NULL)
-		{
-			total_pairs++;
-			if (head->value > node->value)
-				mistake++;
-			node = node->next;
-		}
-		head = head->next;
+		ptr[i] = s[i];
+		i++;
 	}
-	return ((float)mistake / total_pairs);
+	ptr[i] = '\0';
+	return (ptr);
 }

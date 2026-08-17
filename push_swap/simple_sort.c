@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   simple_sort.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdecarli <mdecarli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/07 13:46:25 by mdecarli          #+#    #+#             */
-/*   Updated: 2026/08/07 16:49:46 by mdecarli         ###   ########.fr       */
+/*   Updated: 2026/08/17 08:49:19 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_stack	*find_min(t_stack *head)
 	return (min_node);
 }
 
-int	get_position(t_stack *head, t_stack *min_node)
+static	int	get_position(t_stack *head, t_stack *min_node)
 {
 	int	pos;
 
