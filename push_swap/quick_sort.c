@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quick_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: diatisin <diatisin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/13 12:43:55 by mdecarli          #+#    #+#             */
-/*   Updated: 2026/08/17 10:23:18 by diatisin         ###   ########.fr       */
+/*   Updated: 2026/08/17 19:21:53 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ fino ad arrivare a 1, 2 o 3 elementi.  */
 
 #include "push_swap.h"
 
-static void	sort_small_a(t_stack **a, int size)
+void	sort_small_a(t_stack **a, int size)
 {
 	if (size == 2 && (*a)->value > (*a)->next->value)
 		sa(a, 1);

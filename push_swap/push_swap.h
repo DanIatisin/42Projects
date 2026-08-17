@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: diatisin <diatisin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/03 16:14:07 by mdecarli          #+#    #+#             */
-/*   Updated: 2026/08/17 11:32:57 by diatisin         ###   ########.fr       */
+/*   Updated: 2026/08/17 19:30:16 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 # include <limits.h>
 # include <stdlib.h>
 # include <unistd.h>
-//# include "libft.h"
+#include "libft/libft.h"
+#include "printf/ft_printf.h"
 
 typedef struct s_stack
 {
@@ -52,7 +53,21 @@ void				rr(t_stack **stack_a, t_stack **stack_b, int print);
 void				rra(t_stack **stack_a, int print);
 void				rrb(t_stack **stack_b, int print);
 void				rrr(t_stack **stack_a, t_stack **stack_b, int print);
+
 int					find_pivot(t_stack *head, int size);
 void				quick_sort_a(t_stack **a, t_stack **b, int size);
+void				sort_small_a(t_stack **a, int size);
+
+int					check_number(char *s);
+int					match_flags(t_flags_ps *f, char *s);
+int					validate_flag(t_flags_ps *f, char **argv, int argc);
+int					control_dups(t_stack *stack_a);
+int					push_in_stack(t_stack **stack_a, char **argv, int offset);
+int					parser(int argc, char **argv, t_flags_ps *f, t_stack **stack_a);
+void				normalize_stack(t_stack **stack_a);
+void				sort_array(int *tab, int size);
+void				set_index(t_stack *stack, int *tab, int size);
+void				chunk_sort(t_stack **stack_a, t_stack **stack_b);
+
 
 #endif

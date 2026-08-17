@@ -3,111 +3,119 @@
 /*                                                        :::      ::::::::   */
 /*   chunk_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: diatisin <diatisin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/17 11:24:46 by diatisin          #+#    #+#             */
-/*   Updated: 2026/08/17 11:31:23 by diatisin         ###   ########.fr       */
+/*   Updated: 2026/08/17 19:36:07 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	smart_rotate_a(t_stack **stack_a, int pos)
+static void	process_chunks(t_stack **stack_a, t_stack **stack_b, int limit, int chunk_size, int *i)
 {
-	int	size;
-	int	count;
-	int	count_back;
-
-	size = ft_lstsize_ps(*stack_a);
-	count = 0;
-	count_back = 0;
-	if (pos <= (size - pos))
+	if ((*stack_a)->index <= limit)
 	{
-		while (count < pos)
-		{
-			ra(stack_a, 1);
-			count++;
-		}
+		pb(stack_a, stack_b, 1);
+		(*i)++;
 	}
-	else
+	else if ((*stack_a)->index <= limit + chunk_size)
 	{
-		while (count_back < (size - pos))
+		pb(stack_a, stack_b, 1);
+		rb(stack_b, 1);
+		(*i)++;
+	}
+		else
+		ra(stack_a, 1);
+}
+
+static void	push_chunks_b(t_stack **stack_a, t_stack **stack_b, int len)
+{
+	int limit;
+	int chunk_size;
+	int i;
+	
+	i = 0;
+	if (len <= 100)
+		chunk_size = len / 5;
+	else 
+		chunk_size = len / 11;
+	limit = chunk_size;
+	while (*stack_a)
+	{
+		process_chunks(stack_a, stack_b, limit, chunk_size, &i);
+		if (i >= limit)
 		{
-			rra(stack_a, 1);
-			count_back++;
-		}
+			limit += chunk_size;
+			if (limit > len)
+				limit = len;
+		}	
 	}
 }
 
-void	smart_rotate_b(t_stack **stack_b, int pos)
+static	int	get_max_pos(t_stack *stack)
 {
-	int	size;
-	int	count;
-	int	count_back;
+	int max_val;
+	int max_pos;
+	int current_pos;
+	t_stack *tmp;
 
-	size = ft_lstsize_ps(*stack_b);
-	count = 0;
-	count_back = 0;
-	if (pos <= (size - pos))
+	tmp = stack;
+	max_val = tmp->index;
+	max_pos = 0;
+	current_pos = 0;
+	while (tmp)
 	{
-		while (count < pos)
+		if (tmp->index > max_val)
 		{
-			rb(stack_b, 1);
-			count++;
+			max_val = tmp->index;
+			max_pos = current_pos;
 		}
+			tmp = tmp->next;
+			current_pos++;
 	}
-	else
-	{
-		while (count_back < (size - pos))
-		{
-			rrb(stack_b, 1);
-			count_back++;
-		}
-	}
+	return (max_pos);	
 }
 
-void	chunk_sort(t_stack **stack_a, t_stack **stack_b, int size)
+static void	push_stack_a(t_stack **stack_a, t_stack **stack_b) 
 {
-	int	min;
-	int	max;
-	int	chunk_number;
-	int	chunk_size;
-
-	size = ft_lstsize_ps(*stack_a);
-	get_min_max(*stack_a, &min, &max);
-	chunk_number = ft_sqrt(size);
-	chunk_size = get_chunk_size(min, max, chunk_number);
-	set_chunk_index(*stack_a, min, chunk_size, chunk_number);
-	empty_all_chunks(stack_a, stack_b, chunk_number);
+	int max_pos;
+	int size;
+	int rotate;
+	
 	while (*stack_b)
-		pa(stack_a, stack_b, 1);
-}
-
-void	empty_all_chunks(t_stack **a, t_stack **b, int num_chunk)
-{
-	int	chunk_index;
-
-	chunk_index = 0;
-	while (chunk_index < num_chunk)
 	{
-		while (move_chunk_node(a, b, chunk_index))
-			chunk_index++;
+		max_pos = get_max_pos(*stack_b);
+		size = ft_lstsize_ps(*stack_b);
+		if (max_pos <= size / 2)
+		{
+			while (max_pos-- > 0)
+				rb(stack_b, 1);
+		}
+		else
+		{
+			rotate = size - max_pos;
+			while (rotate-- > 0)
+				rrb(stack_b, 1);
+		}
+		pa(stack_a, stack_b, 1);
 	}
 }
 
-int	move_chunk_node(t_stack **a, t_stack **b, int chunk_index)
+void	chunk_sort(t_stack **stack_a, t_stack **stack_b)
 {
-	t_stack	*target;
-	int		pos_a;
-	int		pos_b;
+	int len;
 
-	target = find_chunk_node(*a, chunk_index);
-	if (!target)
-		return (0);
-	pos_a = get_position_a(*a, chunk_index);
-	smart_rotate_a(a, pos_a);
-	pos_b = get_position_b(*b, (*a)->value);
-	smart_rotate_b(b, pos_b);
-	pb(a, b, 1);
-	return (1);
+	len = ft_lstsize_ps(*stack_a);
+	if (is_sorted(*stack_a))
+		return ;
+
+	if (len <= 3)
+	{
+		sort_small_a(stack_a, len);
+		return ;
+	}
+
+	push_chunks_b(stack_a, stack_b, len);
+	push_stack_a(stack_a, stack_b);
 }

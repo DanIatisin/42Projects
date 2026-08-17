@@ -8,7 +8,9 @@ FTPRINTF = $(FTPRINTF_DIR)/libftprintf.a
 
 SRCS = push.c rotate.c rev_rotate.c\
 swap.c stack_utils.c disorder.c\
-parser.c parser_utils.c
+parser.c parser_utils.c quick_sort.c\
+quick_sort_utils.c chunk_sort.c\
+chunk_sort_utils.c
 
 OBJS = ${SRCS:.c=.o}
 

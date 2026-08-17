@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdecarli <mdecarli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/03 17:26:21 by mdecarli          #+#    #+#             */
-/*   Updated: 2026/08/10 17:54:39 by mdecarli         ###   ########.fr       */
+/*   Updated: 2026/08/17 17:42:52 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,7 @@ int	ft_lstsize_ps(t_stack *stack)
 {
 	int		size;
 	t_stack	*cur;
-
-	size = 0;
+	
 	cur = stack;
 	while (cur != NULL)
 	{
