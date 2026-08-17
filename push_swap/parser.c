@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parser.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: diatisin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/08/17 11:25:07 by diatisin          #+#    #+#             */
+/*   Updated: 2026/08/17 11:25:08 by diatisin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-int push_in_stack(t_stack **stack_a, char **argv, int offset)
+int	push_in_stack(t_stack **stack_a, char **argv, int offset)
 {
-	t_stack *node;
-	
+	t_stack	*node;
+
 	while (argv[offset])
 	{
 		if (!check_number(argv[offset]))
@@ -23,9 +35,9 @@ int push_in_stack(t_stack **stack_a, char **argv, int offset)
 	return (1);
 }
 
-int parser(int argc, char **argv, t_flags_ps *f, t_stack **stack_a)
+int	parser(int argc, char **argv, t_flags_ps *f, t_stack **stack_a)
 {
-	int offset;
+	int	offset;
 
 	offset = validate_flag(f, argv, argc);
 	if (offset == -1)
@@ -37,5 +49,5 @@ int parser(int argc, char **argv, t_flags_ps *f, t_stack **stack_a)
 		ft_free_stack(stack_a);
 		return (0);
 	}
-		return (1);
+	return (1);
 }

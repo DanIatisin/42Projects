@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: diatisin <diatisin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 11:36:46 by diatisin          #+#    #+#             */
-/*   Updated: 2026/08/14 18:24:27 by marvin           ###   ########.fr       */
+/*   Updated: 2026/08/17 11:21:09 by diatisin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,27 +99,5 @@ int	print_pointer(void *ptr)
 	ft_putchar('x');
 	char_count += 2;
 	char_count += print_hex(address, 0);
-	return (char_count);
-}
-
-int print_float(double val)
-{
-	int char_count;
-	double resto;
-
-	char_count = 0;
-	resto =	val * 10 + 0.5;
-	if (resto >= 10)
-	{
-		char_count += print_num((int)val + 1);
-		char_count += ft_putchar('.');
-		char_count += print_num(0);
-	}
-	else 
-	{
-		char_count += print_num((int)val);
-		char_count += ft_putchar('.');
-		char_count += print_num((int)resto);
-	}
 	return (char_count);
 }

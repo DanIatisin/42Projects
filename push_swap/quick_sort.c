@@ -10,11 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-/*Il principio di Quick Sort è dividere un blocco di elementi in due 
-sotto-blocchi usando un valore medio (il pivot):  
-I numeri più piccoli del pivot vanno in B.  
-I numeri più grandi o uguali al pivot restano in A.  
-Poi si fa la stessa cosa ricorsivamente su blocchi sempre più piccoli 
+/*Il principio di Quick Sort è dividere un blocco di elementi in due
+sotto-blocchi usando un valore medio (il pivot):
+I numeri più piccoli del pivot vanno in B.
+I numeri più grandi o uguali al pivot restano in A.
+Poi si fa la stessa cosa ricorsivamente su blocchi sempre più piccoli
 fino ad arrivare a 1, 2 o 3 elementi.  */
 
 #include "push_swap.h"

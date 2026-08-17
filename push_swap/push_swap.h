@@ -6,7 +6,7 @@
 /*   By: diatisin <diatisin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/03 16:14:07 by mdecarli          #+#    #+#             */
-/*   Updated: 2026/08/17 11:08:30 by diatisin         ###   ########.fr       */
+/*   Updated: 2026/08/17 11:32:57 by diatisin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ typedef struct s_stack
 	struct s_stack	*prev;
 }					t_stack;
 
-typedef struct	s_flags_ps
+typedef struct s_flags_ps
 {
-	int	bench;
-	int flag;
+	int				bench;
+	int				mode;
 }					t_flags_ps;
 
 t_stack				*ft_lstnew_ps(int value);

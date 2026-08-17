@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parser_utils.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: diatisin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/08/17 11:25:16 by diatisin          #+#    #+#             */
+/*   Updated: 2026/08/17 11:25:43 by diatisin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 int	check_number(char *s)
 {
-	int i;
-	int len;
-	int sign;
+	int	i;
+	int	len;
+	int	sign;
 
 	if (!s || !*s)
 		return (0);
@@ -46,7 +58,7 @@ int	match_flags(t_flags_ps *f, char *s)
 
 int	validate_flag(t_flags_ps *f, char **argv, int argc)
 {
-	int i;
+	int	i;
 
 	f->bench = 0;
 	f->mode = -1;
@@ -66,8 +78,8 @@ int	validate_flag(t_flags_ps *f, char **argv, int argc)
 
 int	control_dups(t_stack *stack_a)
 {
-	t_stack *head;
-	t_stack *node;
+	t_stack	*head;
+	t_stack	*node;
 
 	head = stack_a;
 	while (head != NULL)

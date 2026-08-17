@@ -24,6 +24,6 @@ int	print_string(const char *s);
 int	print_pointer(void *ptr);
 int	print_unsigned(unsigned int val);
 int	print_hex(unsigned long val, int uppercase);
-int print_float(double val);
+int	print_float(double val);
 
 #endif

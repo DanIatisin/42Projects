@@ -1,27 +1,26 @@
 NAME = libftprintf.a
 
-SRCS = functions.c ft_printf.c
+SRCS = functions.c ft_printf.c \
+printf_float.c
 
-OBJS = ${SRCS:.c=.o}
+OBJS = ${SRCS :.c =.o}
 
 CC = gcc
 
 RM = rm -f
 
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall - Werror -Wextra
 
-.o:.c
-	${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
+.o :.c ${CC} ${CFLAGS} -c $ <-o ${ < :.c =.o}
 
-${NAME}: ${OBJS}
-	ar rcs ${NAME} ${OBJS}
+${NAME} : ${OBJS} ar rcs ${NAME} ${OBJS}
 
-all: ${NAME}
+all : ${NAME}
 
-clean:
-	${RM} ${OBJS}
+clean : ${RM} ${OBJS}
 
-fclean: clean
-	${RM} ${NAME}
+fclean : clean ${RM} ${NAME}
 
-re: fclean all
+re : fclean all
+
+.PHONY: all fclean clean re
