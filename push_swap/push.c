@@ -6,7 +6,7 @@
 /*   By: mdecarli <mdecarli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/05 16:27:41 by mdecarli          #+#    #+#             */
-/*   Updated: 2026/08/06 13:36:08 by mdecarli         ###   ########.fr       */
+/*   Updated: 2026/08/10 17:42:00 by mdecarli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	pa(t_stack **stack_a, t_stack **stack_b, int print)
 		return ;
 	node_to_push = *stack_b;
 	*stack_b = (*stack_b)->next;
+	if (*stack_b)
+		(*stack_b)->prev = NULL;
 	node_to_push->next = *stack_a;
 	node_to_push->prev = NULL;
 	if (*stack_a)
@@ -37,6 +39,8 @@ void	pb(t_stack **stack_a, t_stack **stack_b, int print)
 		return ;
 	node_to_push = *stack_a;
 	*stack_a = (*stack_a)->next;
+	if (*stack_a)
+		(*stack_a)->prev = NULL;
 	node_to_push->next = *stack_b;
 	node_to_push->prev = NULL;
 	if (*stack_b)

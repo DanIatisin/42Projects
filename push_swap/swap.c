@@ -6,25 +6,24 @@
 /*   By: mdecarli <mdecarli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/04 19:04:02 by mdecarli          #+#    #+#             */
-/*   Updated: 2026/08/07 14:37:56 by mdecarli         ###   ########.fr       */
+/*   Updated: 2026/08/10 18:01:25 by mdecarli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	swap(t_stack **stack)
+static void	swap(t_stack **head)
 {
 	t_stack	*first;
 	t_stack	*second;
 	t_stack	*third;
 
-	if (!stack || !*stack || !(*stack)->next)
+	if (!head || !*head || !(*head)->next)
 		return ;
-	first = *stack;
+	first = *head;
 	second = first->next;
 	third = second->next;
-	first->next = second->next;
-	*stack = second;
+	*head = second;
 	second->prev = NULL;
 	second->next = first;
 	first->prev = second;

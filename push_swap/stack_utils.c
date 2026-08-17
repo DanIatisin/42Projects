@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mdecarli <mdecarli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/03 17:26:21 by mdecarli          #+#    #+#             */
-/*   Updated: 2026/08/12 15:58:43 by marvin           ###   ########.fr       */
+/*   Updated: 2026/08/10 17:54:39 by mdecarli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,20 +26,19 @@ t_stack	*ft_lstnew_ps(int value)
 	return (new_node);
 }
 
-void	ft_lstadd_back_ps(t_stack **stack, t_stack *new_node)
+void	ft_lstadd_back_ps(t_stack **lst, t_stack *new_node)
 {
 	t_stack	*last;
 
-	if (!stack || !new_node)
+	if (!lst || !new_node)
 		return ;
-	new_node->next = NULL;
-	if (*stack == NULL)
+	if (!*lst)
 	{
+		*lst = new_node;
 		new_node->prev = NULL;
-		*stack = new_node;
 		return ;
 	}
-	last = *stack;
+	last = *lst;
 	while (last->next)
 		last = last->next;
 	last->next = new_node;
@@ -74,16 +73,4 @@ void	ft_free_stack(t_stack **stack)
 		*stack = tmp;
 	}
 	*stack = NULL;
-}
-
-void	print_stack(t_stack *head)
-{
-	t_stack *current;
-
-	current = head;
-	while (current != NULL)
-	{
-		printf("%d\n", current->value);
-		current = current->next;
-	}
 }
