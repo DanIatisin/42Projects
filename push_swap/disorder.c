@@ -6,7 +6,7 @@
 /*   By: diatisin <diatisin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/07 14:42:11 by mdecarli          #+#    #+#             */
-/*   Updated: 2026/08/18 13:52:15 by diatisin         ###   ########.fr       */
+/*   Updated: 2026/08/18 15:46:21 by diatisin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,14 +52,21 @@ void	custom_adaptive(t_stack **stack_a, t_stack **stack_b, t_flags_ps *f)
 		return ;
 	}
 	disorder = compute_disorder_ps(*stack_a);
-	if (disorder < 0.2f || f->mode == 1)
+	if (f->mode == 1 || (f->mode == 0 && disorder < 0.2f))
+	{
+		printf("simple: %.2f", disorder);
 		simple_sort(stack_a, stack_b);
-	else if ((disorder > 0.2f && disorder < 0.5f) || f->mode == 2)
+	}
+	else if (f->mode == 2 || (f->mode && disorder <= 0.5f))
+	{
+		printf("medium: %.2f", disorder);
 		chunk_sort(stack_a, stack_b);
-	else if (disorder > 0.5 || f->mode == 3)
+	}
+	else
+	{
+		printf("complex: %.2f", disorder);
 		quick_sort_a(stack_a, stack_b, size);
-// 	else
-// 		printf("adaptive: %.1f", disorder);
+	}
 }
 // da aggiungere algoritmo n2 nel ciclo del custom_adaptive
 

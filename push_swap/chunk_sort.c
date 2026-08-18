@@ -6,7 +6,7 @@
 /*   By: diatisin <diatisin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/17 11:24:46 by diatisin          #+#    #+#             */
-/*   Updated: 2026/08/18 11:22:38 by diatisin         ###   ########.fr       */
+/*   Updated: 2026/08/18 15:37:34 by diatisin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ static void	push_chunks_b(t_stack **stack_a, t_stack **stack_b, int len)
 		chunk_size = len / 5;
 	else 
 		chunk_size = len / 11;
+	if (chunk_size < 1)
+		chunk_size = 1;
 	limit = chunk_size;
 	while (*stack_a)
 	{
@@ -109,7 +111,6 @@ void	chunk_sort(t_stack **stack_a, t_stack **stack_b)
 	len = ft_lstsize_ps(*stack_a);
 	if (is_sorted(*stack_a))
 		return ;
-
 	if (len <= 3)
 	{
 		sort_small_a(stack_a, len);

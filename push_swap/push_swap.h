@@ -6,7 +6,7 @@
 /*   By: diatisin <diatisin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/03 16:14:07 by mdecarli          #+#    #+#             */
-/*   Updated: 2026/08/18 13:33:19 by diatisin         ###   ########.fr       */
+/*   Updated: 2026/08/18 15:48:44 by diatisin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,8 @@ void				chunk_sort(t_stack **stack_a, t_stack **stack_b);
 
 void    			print_node(t_stack *head);
 void				custom_adaptive(t_stack **stack_a, t_stack **stack_b, t_flags_ps *f);
+// void				print_val_index(t_stack *stack);
 
 // int					count_ops(int increment);
-
-// void				print_val_index(t_stack *stack);
 
 #endif

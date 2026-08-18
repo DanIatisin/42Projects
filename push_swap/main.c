@@ -11,8 +11,7 @@ static void	print_stack(t_stack *stack, char *name)
 	}
 	while (stack)
 	{
-		printf("%d ", stack->value);
-		stack = stack->next;
+		printf("%d ", stack->value);		stack = stack->next;
 	}
 	printf("\n");
 }
