@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdecarli <mdecarli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/03 17:26:21 by mdecarli          #+#    #+#             */
-/*   Updated: 2026/08/10 17:54:39 by mdecarli         ###   ########.fr       */
+/*   Updated: 2026/08/18 08:50:08 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ int	ft_lstsize_ps(t_stack *stack)
 {
 	int		size;
 	t_stack	*cur;
-
-	size = 0;
+	
 	cur = stack;
+	size = 0;
 	while (cur != NULL)
 	{
 		size++;
@@ -73,4 +73,17 @@ void	ft_free_stack(t_stack **stack)
 		*stack = tmp;
 	}
 	*stack = NULL;
+}
+
+void	print_val_index(t_stack *stack)
+{
+	t_stack *tmp;
+
+	tmp = stack->next;
+	while(tmp != stack)
+	{
+		printf("value is: %d\n", tmp->value);
+		printf("index is: %d\n", tmp->index);
+	}
+	tmp = tmp->next;
 }

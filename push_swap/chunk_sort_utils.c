@@ -3,69 +3,71 @@
 /*                                                        :::      ::::::::   */
 /*   chunk_sort_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: diatisin <diatisin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/17 11:24:59 by diatisin          #+#    #+#             */
-/*   Updated: 2026/08/17 11:32:39 by diatisin         ###   ########.fr       */
+/*   Updated: 2026/08/18 08:20:33 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	ft_sqrt(int lst_size)
+static	void	sort_array(int *tab, int size)
 {
-	int	num;
+	int i;
+	int j;
+	int temp;
 
-	num = 0;
-	while (num * num <= lst_size)
-		num++;
-	return (num);
+	i = 0;
+	while (i < size - 1)
+	{
+		j = i + 1;
+		while (j < size)
+		{
+			if (tab[i] > tab[j])
+			{
+				temp = tab[j];
+				tab[j] = tab[i];
+				tab[i] = temp;
+			}
+			j++;
+		}
+		i++;
+	}
 }
 
-void	get_min_max(t_stack *stack_a, int *min, int *max)
+static	void	set_index(t_stack *stack, int *tab, int size)
 {
-	*min = stack_a->value;
-	*max = stack_a->value;
-	stack_a = stack_a->next;
-	while (stack_a)
+	int i;
+	
+	while (stack)
 	{
-		if (stack_a->value < *min)
-			*min = stack_a->value;
-		if (stack_a->value > *max)
-			*max = stack_a->value;
-		stack_a = stack_a->next;
+		i = 0;
+		while (i < size && stack->value != tab[i])
+			i++;
+		stack->index = i;
+		stack = stack->next;
 	}
-	return ;
 }
 
-int	get_position_a(t_stack *stack_a, int chunk_index)
+void	normalize_stack(t_stack **stack_a)
 {
-	int		pos;
-	t_stack	*target;
+	int len;
+	int *array;
+	int i;
+	t_stack *tmp;
 
-	target = find_chunk_node(stack_a, chunk_index);
-	pos = 0;
-	while (stack_a)
+	len = ft_lstsize_ps(*stack_a);
+	array = malloc(sizeof(int) * len);
+	tmp = *stack_a;
+	i = 0;
+	while (tmp)
 	{
-		if (stack_a == target)
-			return (pos);
-		pos++;
-		stack_a = stack_a->next;
+		array[i] = tmp->value;
+		i++;
+		tmp = tmp->next;
 	}
-	return (pos);
-}
-
-int	get_position_b(t_stack *stack_b, int value)
-{
-	int	pos;
-
-	pos = 0;
-	while (stack_b)
-	{
-		if (stack_b->value < value)
-			return (pos);
-		pos++;
-		stack_b = stack_b->next;
-	}
-	return (pos);
+	sort_array(array, len);
+	set_index(*stack_a, array, len);
+	free(array);
 }
