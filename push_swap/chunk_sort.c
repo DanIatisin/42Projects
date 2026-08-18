@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   chunk_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: diatisin <diatisin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/17 11:24:46 by diatisin          #+#    #+#             */
-/*   Updated: 2026/08/18 08:50:57 by marvin           ###   ########.fr       */
+/*   Updated: 2026/08/18 11:22:38 by diatisin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ static	int	get_max_pos(t_stack *stack)
 	max_val = tmp->index;
 	max_pos = 0;
 	current_pos = 0;
-	printf("size of the stack is:%d\n", ft_lstsize_ps(tmp));
 	while (tmp != NULL)
 	{
 		if (tmp->index > max_val)
@@ -75,7 +74,6 @@ static	int	get_max_pos(t_stack *stack)
 			tmp = tmp->next;
 			current_pos++;
 	}
-	printf("max_pos is: %d\n", max_pos);
 	return (max_pos);	
 }
 
@@ -109,7 +107,6 @@ void	chunk_sort(t_stack **stack_a, t_stack **stack_b)
 	int len;
 
 	len = ft_lstsize_ps(*stack_a);
-	printf("size of stack_a is: %d\n", len);
 	if (is_sorted(*stack_a))
 		return ;
 
@@ -118,13 +115,6 @@ void	chunk_sort(t_stack **stack_a, t_stack **stack_b)
 		sort_small_a(stack_a, len);
 		return ;
 	}
-	
 	push_chunks_b(stack_a, stack_b, len);
-	printf("Stack_b -> \n");
-	print_node(*stack_b);
-	printf("Stack_a -> \n");
-	print_node(*stack_a);
 	push_stack_a(stack_a, stack_b);
-	printf("Stack_a After: ->\n");
-	print_node(*stack_a);
 }

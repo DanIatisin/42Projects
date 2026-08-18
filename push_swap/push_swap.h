@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: diatisin <diatisin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/03 16:14:07 by mdecarli          #+#    #+#             */
-/*   Updated: 2026/08/18 08:48:40 by marvin           ###   ########.fr       */
+/*   Updated: 2026/08/18 13:33:19 by diatisin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,17 @@ int					validate_flag(t_flags_ps *f, char **argv, int argc);
 int					control_dups(t_stack *stack_a);
 int					push_in_stack(t_stack **stack_a, char **argv, int offset);
 int					parser(int argc, char **argv, t_flags_ps *f, t_stack **stack_a);
+float				compute_disorder_ps(t_stack *head);
+
 
 void				normalize_stack(t_stack **stack_a);
 void				chunk_sort(t_stack **stack_a, t_stack **stack_b);
 
 void    			print_node(t_stack *head);
-void				print_val_index(t_stack *stack);
+void				custom_adaptive(t_stack **stack_a, t_stack **stack_b, t_flags_ps *f);
+
+// int					count_ops(int increment);
+
+// void				print_val_index(t_stack *stack);
 
 #endif

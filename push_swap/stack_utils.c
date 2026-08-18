@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: diatisin <diatisin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/03 17:26:21 by mdecarli          #+#    #+#             */
-/*   Updated: 2026/08/18 08:50:08 by marvin           ###   ########.fr       */
+/*   Updated: 2026/08/18 11:48:04 by diatisin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,15 +75,24 @@ void	ft_free_stack(t_stack **stack)
 	*stack = NULL;
 }
 
-void	print_val_index(t_stack *stack)
-{
-	t_stack *tmp;
+// int	count_ops(int increment)
+// {
+// 	static int	ops = 0;
 
-	tmp = stack->next;
-	while(tmp != stack)
-	{
-		printf("value is: %d\n", tmp->value);
-		printf("index is: %d\n", tmp->index);
-	}
-	tmp = tmp->next;
-}
+// 	if (increment)
+// 		ops++;
+// 	return (ops);
+// }
+
+// void	print_val_index(t_stack *stack)
+// {
+// 	t_stack *tmp;
+
+// 	tmp = stack;
+// 	while(tmp != NULL)
+// 	{
+// 		printf("value is: %d\n", tmp->value);
+// 		printf("index is: %d\n", tmp->index);
+// 		tmp = tmp->next;
+// 	}
+// }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: diatisin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: diatisin <diatisin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/17 11:25:16 by diatisin          #+#    #+#             */
-/*   Updated: 2026/08/17 11:25:43 by diatisin         ###   ########.fr       */
+/*   Updated: 2026/08/18 13:41:23 by diatisin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ int	validate_flag(t_flags_ps *f, char **argv, int argc)
 	}
 	if (f->mode == -1)
 		f->mode = 0;
+	printf("mode = %d \n", f->mode);
 	if (i == argc)
 		return (-1);
 	return (i);
