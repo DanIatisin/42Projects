@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-static  void    print_node(t_stack *head)
+void    print_node(t_stack *head)
 {
     t_stack *current;
 
@@ -21,14 +21,17 @@ int main(int argc, char **argv)
     t_stack *stack_b;
     t_flags_ps f;
 
+    stack_a = NULL;
     stack_b = NULL;
     parser(argc, argv, &f, &stack_a);
-    printf("sorting: \n");
+    normalize_stack(&stack_a);
+    print_val_index(stack_a);
+    // printf("sorting: \n");
     // print_node(stack_a);
-    printf("\n");
+    // printf("\n");
     chunk_sort(&stack_a, &stack_b);
-
-    printf("stack_a after is: \n");
-    print_node(stack_a);
+    
+    // printf("stack_a after is: \n");
+    // print_node(stack_a);
     return (1);
 }
