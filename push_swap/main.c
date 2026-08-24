@@ -1,99 +1,30 @@
 #include "push_swap.h"
-#include <stdio.h>
 
-static void	print_stack(t_stack *stack, char *name)
+int main (int argc, char **argv)
 {
-	printf("Pila %s: ", name);
-	if (!stack)
-	{
-		printf("(vuota)\n");
-		return ;
-	}
-	while (stack)
-	{
-		printf("%d ", stack->value);		stack = stack->next;
-	}
-	printf("\n");
+
+    t_stack     *a;
+    t_stack     *b;
+    t_flags_ps  f;
+    float       disorder;
+
+    if (argc < 2)
+        return (1);
+    a = NULL;
+    b = NULL;
+    if (!a || !b || !parser(argc, argv, &f, &a))
+    {
+        write(2, "Error\n", 6);
+        ft_free_stack(&a);
+        ft_free_stack(&b);
+        // return (ft_free_stack(a), ft_free_stack(b), write (2, "Error\n", 6, 0))
+        return (0);
+    }
+    disorder = compute_disorder_ps(a);
+    custom_adaptive(&a, &b, &f);
+    if (f.bench)
+        benchmark(....);
+    ft_free_stack(&a);
+    ft_free_stack(&b);
+    return (0);
 }
-
-int	main(void)
-{
-	t_stack	*a;
-	t_stack	*b;
-
-	a = NULL;
-	b = NULL;
-	ft_lstadd_back_ps(&a, ft_lstnew_ps(42));
-	ft_lstadd_back_ps(&a, ft_lstnew_ps(-10));
-	ft_lstadd_back_ps(&a, ft_lstnew_ps(5));
-	ft_lstadd_back_ps(&a, ft_lstnew_ps(0));
-	ft_lstadd_back_ps(&a, ft_lstnew_ps(12));
-	ft_lstadd_back_ps(&a, ft_lstnew_ps(-2));
-	ft_lstadd_back_ps(&a, ft_lstnew_ps(8));
-	ft_lstadd_back_ps(&a, ft_lstnew_ps(3));
-	printf("=== PRIMA DEL QUICK SORT ===\n");
-	print_stack(a, "A");
-	print_stack(b, "B");
-	printf("Ordinata? %s\n\n", is_sorted(a) ? "SI" : "NO");
-	printf("=== MOSSE ESEGUITE ===\n");
-	quick_sort_a(&a, &b, ft_lstsize_ps(a));
-	printf("\n=== DOPO IL QUICK SORT ===\n");
-	print_stack(a, "A");
-	print_stack(b, "B");
-	printf("Ordinata? %s\n", is_sorted(a) ? "SI" : "NO");
-	ft_free_stack(&a);
-	ft_free_stack(&b);
-	return (0);
-}
-
-/*
-#include "push_swap.h"
-#include <stdlib.h>
-static void	print_stack(t_stack *stack, char *name)
-{
-	printf("Pila %s: ", name);
-	if (!stack)
-	{
-		printf("(vuota)\n");
-		return ;
-	}
-	while (stack)
-	{
-		printf("%d ", stack->value);
-		stack = stack->next;
-	}
-	printf("\n");
-}
-
-int	main(void)
-{
-	t_stack	*a;
-	t_stack	*b;
-
-	a = NULL;
-	b = NULL;
-
-	ft_lstadd_back_ps(&a, ft_lstnew_ps(5));
-	ft_lstadd_back_ps(&a, ft_lstnew_ps(-2));
-	ft_lstadd_back_ps(&a, ft_lstnew_ps(42));
-	ft_lstadd_back_ps(&a, ft_lstnew_ps(0));
-	ft_lstadd_back_ps(&a, ft_lstnew_ps(12));
-	ft_lstadd_back_ps(&a, ft_lstnew_ps(-10));
-
-	printf("=== PRIMA DELL'ORDINAMENTO ===\n");
-	print_stack(a, "A");
-	print_stack(b, "B");
-	printf("Ordinata? %s\n\n", is_sorted(a) ? "SI" : "NO");
-
-	printf("=== MOSSE ESEGUITE ===\n");
-	simple_sort(&a, &b);
-
-	printf("\n=== DOPO L'ORDINAMENTO ===\n");
-	print_stack(a, "A");
-	print_stack(b, "B");
-	printf("Ordinata? %s\n", is_sorted(a) ? "SI" : "NO");
-
-	ft_free_stack(&a);
-	ft_free_stack(&b);
-	return (0);
-}*/
