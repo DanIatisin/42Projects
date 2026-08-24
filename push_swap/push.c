@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdecarli <mdecarli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: diatisin <diatisin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/05 16:27:41 by mdecarli          #+#    #+#             */
-/*   Updated: 2026/08/10 17:42:00 by mdecarli         ###   ########.fr       */
+/*   Updated: 2026/08/19 11:27:50 by diatisin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	pa(t_stack **stack_a, t_stack **stack_b, int print)
 	if (*stack_a)
 		(*stack_a)->prev = node_to_push;
 	*stack_a = node_to_push;
+	count_op(3);
 	if (print)
 		write(1, "pa\n", 3);
 }
@@ -46,6 +47,7 @@ void	pb(t_stack **stack_a, t_stack **stack_b, int print)
 	if (*stack_b)
 		(*stack_b)->prev = node_to_push;
 	*stack_b = node_to_push;
+	count_op(4);
 	if (print)
 		write(1, "pb\n", 3);
 }

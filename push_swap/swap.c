@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdecarli <mdecarli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: diatisin <diatisin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/04 19:04:02 by mdecarli          #+#    #+#             */
-/*   Updated: 2026/08/10 18:01:25 by mdecarli         ###   ########.fr       */
+/*   Updated: 2026/08/19 10:59:54 by diatisin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ static void	swap(t_stack **head)
 void	sa(t_stack **stack_a, int print)
 {
 	swap(stack_a);
+	count_op(0);
 	if (print)
 		write(1, "sa\n", 3);
 }
@@ -42,6 +43,7 @@ void	sa(t_stack **stack_a, int print)
 void	sb(t_stack **stack_b, int print)
 {
 	swap(stack_b);
+	count_op(1);
 	if (print)
 		write(1, "sb\n", 3);
 }
@@ -50,6 +52,7 @@ void	ss(t_stack **stack_a, t_stack **stack_b, int print)
 {
 	swap(stack_a);
 	swap(stack_b);
+	count_op(2);
 	if (print)
 		write(1, "ss\n", 3);
 }

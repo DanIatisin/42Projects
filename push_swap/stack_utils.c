@@ -6,7 +6,7 @@
 /*   By: diatisin <diatisin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/03 17:26:21 by mdecarli          #+#    #+#             */
-/*   Updated: 2026/08/18 15:48:58 by diatisin         ###   ########.fr       */
+/*   Updated: 2026/08/24 13:30:06 by diatisin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	ft_lstsize_ps(t_stack *stack)
 {
 	int		size;
 	t_stack	*cur;
-	
+
 	cur = stack;
 	size = 0;
 	while (cur != NULL)
@@ -75,24 +75,14 @@ void	ft_free_stack(t_stack **stack)
 	*stack = NULL;
 }
 
-// int	count_ops(int increment)
-// {
-// 	static int	ops = 0;
+int	*count_op(int k)
+{
+	static int	n[12];
 
-// 	if (increment)
-// 		ops++;
-// 	return (ops);
-// }
-
-// void	print_val_index(t_stack *stack)
-// {
-// 	t_stack *tmp;
-
-// 	tmp = stack;
-// 	while(tmp != NULL)
-// 	{
-// 		printf("value is: %d\n", tmp->value);
-// 		printf("index is: %d\n", tmp->index);
-// 		tmp = tmp->next;
-// 	}
-// }
+	if (k >= 0)
+	{
+		n[k] += 1;
+		n[11] += 1;
+	}
+	return (n);
+}

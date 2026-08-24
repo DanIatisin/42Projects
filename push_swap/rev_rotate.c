@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rev_rotate.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdecarli <mdecarli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: diatisin <diatisin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/05 17:29:56 by mdecarli          #+#    #+#             */
-/*   Updated: 2026/08/10 17:34:27 by mdecarli         ###   ########.fr       */
+/*   Updated: 2026/08/19 11:32:12 by diatisin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ static void	rev_rotate(t_stack **stack)
 void	rra(t_stack **stack_a, int print)
 {
 	rev_rotate(stack_a);
+	count_op(8);
 	if (print)
 		write(1, "rra\n", 4);
 }
@@ -40,6 +41,7 @@ void	rra(t_stack **stack_a, int print)
 void	rrb(t_stack **stack_b, int print)
 {
 	rev_rotate(stack_b);
+	count_op(9);
 	if (print)
 		write(1, "rrb\n", 4);
 }
@@ -48,6 +50,7 @@ void	rrr(t_stack **stack_a, t_stack **stack_b, int print)
 {
 	rev_rotate(stack_a);
 	rev_rotate(stack_b);
+	count_op(10);
 	if (print)
 		write(1, "rrr\n", 4);
 }

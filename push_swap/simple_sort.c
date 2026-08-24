@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   simple_sort.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdecarli <mdecarli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: diatisin <diatisin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/07 13:46:25 by mdecarli          #+#    #+#             */
-/*   Updated: 2026/08/10 18:07:27 by mdecarli         ###   ########.fr       */
+/*   Updated: 2026/08/24 11:30:06 by diatisin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	is_sorted(t_stack *head)
 	return (1);
 }
 
-static void	push_min_to_top(t_stack **stack_a)
+static void	push_min_to_top(t_stack **stack_a, t_flags_ps *f)
 {
 	t_stack	*min;
 	int		pos;
@@ -78,26 +78,26 @@ static void	push_min_to_top(t_stack **stack_a)
 	if (pos <= size / 2)
 	{
 		while (*stack_a != min)
-			ra(stack_a, 1);
+			ra(stack_a, f->print);
 	}
 	else
 	{
 		while (*stack_a != min)
-			rra(stack_a, 1);
+			rra(stack_a, f->print);
 	}
 }
 
-void	simple_sort(t_stack **stack_a, t_stack **stack_b)
+void	simple_sort(t_stack **stack_a, t_stack **stack_b, t_flags_ps *f)
 {
 	if (!stack_a || !*stack_a || is_sorted(*stack_a))
 		return ;
 	while (*stack_a)
 	{
-		push_min_to_top(stack_a);
-		pb(stack_a, stack_b, 1);
+		push_min_to_top(stack_a, f);
+		pb(stack_a, stack_b, f->print);
 	}
 	while (*stack_b)
 	{
-		pa(stack_a, stack_b, 1);
+		pa(stack_a, stack_b, f->print);
 	}
 }

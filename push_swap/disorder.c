@@ -6,7 +6,7 @@
 /*   By: diatisin <diatisin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/07 14:42:11 by mdecarli          #+#    #+#             */
-/*   Updated: 2026/08/18 15:46:21 by diatisin         ###   ########.fr       */
+/*   Updated: 2026/08/24 13:21:38 by diatisin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ float	compute_disorder_ps(t_stack *head)
 
 	if (ft_lstsize_ps(head) < 2)
 		return (0);
-
 	mistake = 0;
 	total_pairs = 0;
 	while (head != NULL)
@@ -38,42 +37,50 @@ float	compute_disorder_ps(t_stack *head)
 	return ((float)mistake / total_pairs);
 }
 
-void	custom_adaptive(t_stack **stack_a, t_stack **stack_b, t_flags_ps *f)
+static void	choose_strategy(t_stack **stack_a, t_stack **stack_b, t_flags_ps *f,
+		int size)
 {
 	float	disorder;
-	int		size;
+
+	disorder = compute_disorder_ps(*stack_a);
+	if (f->mode == 1 || (f->mode == 0 && disorder < 0.2f))
+	{
+		f->complexity = 0;
+		simple_sort(stack_a, stack_b, f);
+	}
+	else if (f->mode == 2 || (f->mode == 0 && disorder <= 0.5f))
+	{
+		f->complexity = 1;
+		chunk_sort(stack_a, stack_b, f);
+	}
+	else
+	{
+		f->complexity = 2;
+		quick_sort_a(stack_a, stack_b, size);
+	}
+}
+
+void	custom_adaptive(t_stack **stack_a, t_stack **stack_b, t_flags_ps *f)
+{
+	int	size;
 
 	if (!stack_a || !*stack_a || is_sorted(*stack_a))
 		return ;
 	size = ft_lstsize_ps(*stack_a);
 	if (size <= 3)
 	{
-		simple_sort(stack_a, stack_b);
+		simple_sort(stack_a, stack_b, f);
 		return ;
 	}
-	disorder = compute_disorder_ps(*stack_a);
-	if (f->mode == 1 || (f->mode == 0 && disorder < 0.2f))
-	{
-		printf("simple: %.2f", disorder);
-		simple_sort(stack_a, stack_b);
-	}
-	else if (f->mode == 2 || (f->mode && disorder <= 0.5f))
-	{
-		printf("medium: %.2f", disorder);
-		chunk_sort(stack_a, stack_b);
-	}
-	else
-	{
-		printf("complex: %.2f", disorder);
-		quick_sort_a(stack_a, stack_b, size);
-	}
+	choose_strategy(stack_a, stack_b, f, size);
 }
+
 // da aggiungere algoritmo n2 nel ciclo del custom_adaptive
 
 /*	creare un blocco di elementi in due sotto
-	- blocchi usando un valore medio(il pivot) : 
-	I numeri più piccoli del pivot vanno in B.I 
+	- blocchi usando un valore medio(il pivot) :
+	I numeri più piccoli del pivot vanno in B.I
 	numeri più grandi o uguali al pivot restano in A.
-	Poi si fa la stessa cosa ricorsivamente su blocchi 
+	Poi si fa la stessa cosa ricorsivamente su blocchi
 	sempre più piccoli fino ad arrivare a 1,
 	2 o 3 elementi.*/

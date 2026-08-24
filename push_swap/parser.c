@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: diatisin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mdecarli <mdecarli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/17 11:25:07 by diatisin          #+#    #+#             */
-/*   Updated: 2026/08/17 11:25:08 by diatisin         ###   ########.fr       */
+/*   Updated: 2026/08/24 11:38:54 by mdecarli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,22 @@
 
 int	push_in_stack(t_stack **stack_a, char **argv, int offset)
 {
-	t_stack	*node;
+	char	**tokens;
+	int		i;
 
 	while (argv[offset])
 	{
-		if (!check_number(argv[offset]))
-		{
-			ft_free_stack(stack_a);
+		tokens = get_tokens(stack_a, argv[offset]);
+		if (!tokens)
 			return (0);
-		}
-		node = ft_lstnew_ps(ft_atoi(argv[offset]));
-		if (!node)
+		i = 0;
+		while (tokens[i])
 		{
-			ft_free_stack(stack_a);
-			return (0);
+			if (!check_tokens(stack_a, tokens[i], tokens))
+				return (0);
+			i++;
 		}
-		ft_lstadd_back_ps(stack_a, node);
+		free_tokens(tokens);
 		offset++;
 	}
 	return (1);

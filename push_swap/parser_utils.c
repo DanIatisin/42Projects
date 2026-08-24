@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: diatisin <diatisin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdecarli <mdecarli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/17 11:25:16 by diatisin          #+#    #+#             */
-/*   Updated: 2026/08/18 13:41:23 by diatisin         ###   ########.fr       */
+/*   Updated: 2026/08/24 11:46:09 by mdecarli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	validate_flag(t_flags_ps *f, char **argv, int argc)
 	f->bench = 0;
 	f->mode = -1;
 	i = 1;
-	while (i < argc && !check_number(argv[i]))
+	while (i < argc && is_known_flag(argv[i]))
 	{
 		if (!match_flags(f, argv[i]))
 			return (-1);
@@ -71,7 +71,6 @@ int	validate_flag(t_flags_ps *f, char **argv, int argc)
 	}
 	if (f->mode == -1)
 		f->mode = 0;
-	printf("mode = %d \n", f->mode);
 	if (i == argc)
 		return (-1);
 	return (i);
@@ -95,4 +94,13 @@ int	control_dups(t_stack *stack_a)
 		head = head->next;
 	}
 	return (1);
+}
+
+int	is_known_flag(char *s)
+{
+	if (!ft_strncmp(s, "--bench", 8) || !ft_strncmp(s, "--adaptive", 11)
+		|| !ft_strncmp(s, "--simple", 9) || !ft_strncmp(s, "--medium", 9)
+		|| !ft_strncmp(s, "--complex", 10))
+		return (1);
+	return (0);
 }

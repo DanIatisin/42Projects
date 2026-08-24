@@ -10,21 +10,21 @@ CC = gcc
 RM = rm -f
 
 CFLAGS = -Wall -Werror -Wextra
-
-.c.o: 
+ 
+.c.o:
 	${CC} ${CFLAGS} -c $< -o $@
-
-${NAME} : ${OBJS} 
+ 
+${NAME}: ${OBJS}
 	ar rcs ${NAME} ${OBJS}
-
+ 
 all: ${NAME}
-
-clean: 
+ 
+clean:
 	${RM} ${OBJS}
-
-fclean: clean 
+ 
+fclean: clean
 	${RM} ${NAME}
-
-re:	fclean all
-
+ 
+re: fclean all
+ 
 .PHONY: all fclean clean re

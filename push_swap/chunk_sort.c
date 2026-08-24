@@ -6,61 +6,57 @@
 /*   By: diatisin <diatisin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/17 11:24:46 by diatisin          #+#    #+#             */
-/*   Updated: 2026/08/18 15:37:34 by diatisin         ###   ########.fr       */
+/*   Updated: 2026/08/24 13:21:47 by diatisin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	process_chunks(t_stack **stack_a, t_stack **stack_b, int limit, int chunk_size, int *i)
+static void	process_chunks(t_chunk_cs *cs)
 {
-	if ((*stack_a)->index <= limit)
+	if ((*cs->stack_a)->index <= cs->limit)
 	{
-		pb(stack_a, stack_b, 1);
-		(*i)++;
+		pb(cs->stack_a, cs->stack_b, cs->f->print);
+		cs->i++;
 	}
-	else if ((*stack_a)->index <= limit + chunk_size)
+	else if ((*cs->stack_a)->index <= cs->limit + cs->chunk_size)
 	{
-		pb(stack_a, stack_b, 1);
-		rb(stack_b, 1);
-		(*i)++;
+		pb(cs->stack_a, cs->stack_b, cs->f->print);
+		rb(cs->stack_b, cs->f->print);
+		cs->i++;
 	}
 	else
-		ra(stack_a, 1);
+		ra(cs->stack_a, cs->f->print);
 }
 
-static void	push_chunks_b(t_stack **stack_a, t_stack **stack_b, int len)
+static void	push_chunks_b(t_chunk_cs *cs, int len)
 {
-	int limit;
-	int chunk_size;
-	int i;
-	
-	i = 0;
+	cs->i = 0;
 	if (len <= 100)
-		chunk_size = len / 5;
-	else 
-		chunk_size = len / 11;
-	if (chunk_size < 1)
-		chunk_size = 1;
-	limit = chunk_size;
-	while (*stack_a)
+		cs->chunk_size = len / 5;
+	else
+		cs->chunk_size = len / 11;
+	if (cs->chunk_size < 1)
+		cs->chunk_size = 1;
+	cs->limit = cs->chunk_size;
+	while (*cs->stack_a)
 	{
-		process_chunks(stack_a, stack_b, limit, chunk_size, &i);
-		if (i >= limit)
+		process_chunks(cs);
+		if (cs->i >= cs->limit)
 		{
-			limit += chunk_size;
-			if (limit > len)
-				limit = len;
-		}	
+			cs->limit += cs->chunk_size;
+			if (cs->limit > len)
+				cs->limit = len;
+		}
 	}
 }
 
-static	int	get_max_pos(t_stack *stack)
+static int	get_max_pos(t_stack *stack)
 {
-	int max_val;
-	int max_pos;
-	int current_pos;
-	t_stack *tmp;
+	int		max_val;
+	int		max_pos;
+	int		current_pos;
+	t_stack	*tmp;
 
 	tmp = stack;
 	max_val = tmp->index;
@@ -73,40 +69,41 @@ static	int	get_max_pos(t_stack *stack)
 			max_val = tmp->index;
 			max_pos = current_pos;
 		}
-			tmp = tmp->next;
-			current_pos++;
+		tmp = tmp->next;
+		current_pos++;
 	}
-	return (max_pos);	
+	return (max_pos);
 }
 
-static void	push_stack_a(t_stack **stack_a, t_stack **stack_b) 
+static void	push_stack_a(t_chunk_cs *cs)
 {
-	int max_pos;
-	int size;
-	int rotate;
-	
-	while (*stack_b)
+	int	max_pos;
+	int	size;
+	int	rotate;
+
+	while (*cs->stack_b)
 	{
-		max_pos = get_max_pos(*stack_b);
-		size = ft_lstsize_ps(*stack_b);
+		max_pos = get_max_pos(*cs->stack_b);
+		size = ft_lstsize_ps(*cs->stack_b);
 		if (max_pos <= size / 2)
 		{
 			while (max_pos-- > 0)
-				rb(stack_b, 1);
+				rb(cs->stack_b, cs->f->print);
 		}
 		else
 		{
 			rotate = size - max_pos;
 			while (rotate-- > 0)
-				rrb(stack_b, 1);
+				rrb(cs->stack_b, cs->f->print);
 		}
-		pa(stack_a, stack_b, 1);
+		pa(cs->stack_a, cs->stack_b, cs->f->print);
 	}
 }
 
-void	chunk_sort(t_stack **stack_a, t_stack **stack_b)
+void	chunk_sort(t_stack **stack_a, t_stack **stack_b, t_flags_ps *f)
 {
-	int len;
+	t_chunk_cs	cs;
+	int			len;
 
 	len = ft_lstsize_ps(*stack_a);
 	if (is_sorted(*stack_a))
@@ -116,6 +113,10 @@ void	chunk_sort(t_stack **stack_a, t_stack **stack_b)
 		sort_small_a(stack_a, len);
 		return ;
 	}
-	push_chunks_b(stack_a, stack_b, len);
-	push_stack_a(stack_a, stack_b);
+	cs.stack_a = stack_a;
+	cs.stack_b = stack_b;
+	cs.f = f;
+	normalize_stack(stack_a);
+	push_chunks_b(&cs, len);
+	push_stack_a(&cs);
 }
