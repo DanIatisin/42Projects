@@ -6,7 +6,7 @@
 /*   By: diatisin <diatisin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/13 12:43:55 by mdecarli          #+#    #+#             */
-/*   Updated: 2026/08/24 13:28:28 by diatisin         ###   ########.fr       */
+/*   Updated: 2026/08/31 10:53:16 by diatisin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ static void	quick_sort_b(t_stack **a, t_stack **b, int size)
 {
 	t_part	p;
 
+	if (size == 0)
+		return ;
 	if (size == 1)
 		return (pa(a, b, 1));
 	if (size == 2)

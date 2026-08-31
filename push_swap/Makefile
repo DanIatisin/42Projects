@@ -1,4 +1,6 @@
-NAME = push_swap.a
+MAKEFLAGS += --silent
+
+NAME = push_swap
 
 LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a
@@ -11,7 +13,7 @@ swap.c stack_utils.c disorder.c\
 parser.c parser_utils.c chunk_sort.c\
 chunk_sort_utils.c quick_sort.c\
 quick_sort_utils.c simple_sort.c\
-parser_split.c
+parser_split.c main.c benchmode.c
 
 OBJS = ${SRCS:.c=.o}
 
@@ -23,29 +25,36 @@ CFLAGS = -Wall -Wextra -Werror
 
 INCLUDES = -Iincludes -I$(LIBFT_DIR) -I$(FTPRINTF_DIR)
 
+#colors
+RESET = \033[0m
+GREEN = \033[32m
+
 all: $(NAME)
 
 $(LIBFT):
-	make -C $(LIBFT_DIR)
+	@make -C $(LIBFT_DIR)
 
 $(FTPRINTF):
-	make -C $(FTPRINTF_DIR)
-	
+	@make -C $(FTPRINTF_DIR)
+
 $(NAME) : $(OBJS) $(LIBFT) $(FTPRINTF)
-	ar rcs $(NAME) $(OBJS)
+	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(FTPRINTF) -o $(NAME)
+	@echo "$(GREEN) done $(RESET)"
 
 .c.o:	
-	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $(<:.c=.o)
+	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $(<:.c=.o)
 
 clean:
-	$(RM) $(OBJS)
-	make -C $(LIBFT_DIR) clean
-	make -C $(FTPRINTF_DIR) clean
+	@$(RM) $(OBJS)
+	@make -C $(LIBFT_DIR) clean
+	@make -C $(FTPRINTF_DIR) clean
+	@echo "$(GREEN) done $(RESET)"
 
 fclean: clean
-	$(RM) $(NAME)
-	make -C $(LIBFT_DIR) fclean
-	make -C $(FTPRINTF_DIR)	fclean
+	@$(RM) $(NAME)
+	@make -C $(LIBFT_DIR) fclean
+	@make -C $(FTPRINTF_DIR) fclean
+	@echo "$(GREEN) done $(RESET)"
 
 re: fclean all
 

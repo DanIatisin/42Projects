@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quick_sort_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdecarli <mdecarli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: diatisin <diatisin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/11 16:55:16 by mdecarli          #+#    #+#             */
-/*   Updated: 2026/08/24 11:24:08 by mdecarli         ###   ########.fr       */
+/*   Updated: 2026/08/31 10:53:58 by diatisin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ static int	get_max_in_block(t_stack *head, int size)
 
 int	find_pivot(t_stack *head, int size)
 {
-	int	min;
-	int	max;
+	long	min;
+	long	max;
 
 	min = get_min_in_block(head, size);
 	max = get_max_in_block(head, size);
