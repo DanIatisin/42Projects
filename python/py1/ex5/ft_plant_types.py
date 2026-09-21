@@ -12,18 +12,19 @@ class Plant():
         self._height = self._height + 0.8
     
     def age(self) -> None:
-        self._age = set_age + 1
+        self.set_age(self._age + 1)
 
     def get_age(self) -> int:
         return self._age
 
-    def set_age(self, age) -> None:
+    def set_age(self, age) -> bool:
         if age < 0:
             print(f"{self.p_name}: Error, age can't be a negative number")
             print("Age update rejected")
+            return False
         else:
             self._age = age
-            print(f"Age updated: {self._age} days")
+            return True
 
     def get_height(self) -> float:
         return self._height
@@ -34,7 +35,7 @@ class Plant():
             print("Height update rejected")
         else:
             self._height = height
-            print(f"Height updated: {self._height}cm")
+            # print(f"Height updated: {self._height}cm")
 
 
 class Flower(Plant):
@@ -79,11 +80,17 @@ class Vegetable(Plant):
 
     def show(self) -> None:
         super().show()
-        print(f"Harvest season: {self._harvest_season}"
-                f"Nutritional value: {self._nutritional_value}")
+        print(f"Harvest season: {self._harvest_season}")
+        print(f"Nutritional value: {self._nutritional_value}")
+
+    def age(self) -> None:
+        super().age() 
 
     def grow(self) -> None:
         super().grow()
+        self.grow_bonus()
+
+    def grow_bonus(self) -> None:
         self.set_height(round(self.get_height() + 1.3, 1))
         self._nutritional_value += 1
 
@@ -109,4 +116,5 @@ if __name__ == "__main__":
     print("[make tomato grow for 20 days]")
     for day in range(1, 21):
         tomato.grow()
+        tomato.age()
     tomato.show()
