@@ -10,14 +10,14 @@ class Plant():
 
     def grow(self) -> None:
         self._height = self._height + 0.8
-    
+
     def age(self) -> None:
         self.set_age(self._age + 1)
 
     def get_age(self) -> int:
         return self._age
 
-    def set_age(self, age) -> bool:
+    def set_age(self, age: int) -> bool:
         if age < 0:
             print(f"{self.p_name}: Error, age can't be a negative number")
             print("Age update rejected")
@@ -29,8 +29,8 @@ class Plant():
     def get_height(self) -> float:
         return self._height
 
-    def set_height(self, height) -> None:
-        if height < 0:
+    def set_height(self, height: float) -> None:
+        if height < 0.0:
             print(f"{self.p_name}: Error, height can't be a negative number")
             print("Height update rejected")
         else:
@@ -73,7 +73,7 @@ class Tree(Plant):
 
 class Vegetable(Plant):
     def __init__(self, name: str, height: float, age: int,
-                    harvest_season: str, nutritional_value: int) -> None: 
+                 harvest_season: str, nutritional_value: int) -> None:
         super().__init__(name, height, age)
         self._harvest_season = harvest_season
         self._nutritional_value = nutritional_value
@@ -84,7 +84,7 @@ class Vegetable(Plant):
         print(f"Nutritional value: {self._nutritional_value}")
 
     def age(self) -> None:
-        super().age() 
+        super().age()
 
     def grow(self) -> None:
         super().grow()
@@ -93,6 +93,7 @@ class Vegetable(Plant):
     def grow_bonus(self) -> None:
         self.set_height(round(self.get_height() + 1.3, 1))
         self._nutritional_value += 1
+
 
 if __name__ == "__main__":
     print("=== Plant Types ===")

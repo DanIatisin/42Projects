@@ -29,7 +29,7 @@ class Plant():
     def grow(self) -> None:
         self.set_height(round(self.get_height() + self.GROWTH, 1))
         self._stats._grow_count += 1
-    
+
     def age(self) -> None:
         self.set_age(self._age + self.AGE_RATE)
         self._stats._age_count += 1
@@ -37,7 +37,7 @@ class Plant():
     def get_age(self) -> int:
         return self._age
 
-    def set_age(self, age) -> bool:
+    def set_age(self, age: int) -> bool:
         if age < 0:
             print(f"{self.p_name}: Error, age can't be a negative number")
             print("Age update rejected")
@@ -49,8 +49,8 @@ class Plant():
     def get_height(self) -> float:
         return self._height
 
-    def set_height(self, height) -> None:
-        if height < 0:
+    def set_height(self, height: float) -> None:
+        if height < 0.0:
             print(f"{self.p_name}: Error, height can't be a negative number")
             print("Height update rejected")
         else:
@@ -115,7 +115,7 @@ class Tree(Plant):
 
 class Vegetable(Plant):
     def __init__(self, name: str, height: float, age: int,
-                    harvest_season: str, nutritional_value: int) -> None: 
+                 harvest_season: str, nutritional_value: int) -> None:
         super().__init__(name, height, age)
         self._harvest_season: str = harvest_season
         self._nutritional_value: int = nutritional_value
@@ -139,6 +139,7 @@ class Vegetable(Plant):
 
 class Seed(Flower):
     GROWTH: float = 30.0
+
     def __init__(self, name: str, height: float, age: int, color: str) -> None:
         super().__init__(name, height, age, color)
         self._seeds: int = 0
@@ -152,7 +153,7 @@ class Seed(Flower):
         print(f" Seeds: {self._seeds}")
 
 
-def display_statistics(plant: Plant) -> None: 
+def display_statistics(plant: Plant) -> None:
     plant.show_stats()
 
 

@@ -14,7 +14,7 @@ class Plant():
     def get_age(self) -> int:
         return self._age
 
-    def set_age(self, age) -> None:
+    def set_age(self, age: int) -> None:
         if age < 0:
             print(f"{self.p_name}: Error, age can't be a negative number")
             print("Age update rejected")
@@ -25,8 +25,8 @@ class Plant():
     def get_height(self) -> float:
         return self._height
 
-    def set_height(self, height) -> None:
-        if height < 0:
+    def set_height(self, height: float) -> None:
+        if height < 0.0:
             print(f"{self.p_name}: Error, height can't be a negative number")
             print("Height update rejected")
         else:
