@@ -8,7 +8,7 @@ def show_data() -> None:
     if n == 1:
         print("No arguments provided!")
     else:
-        print(f"Arguments recieved: {n - 1}")
+        print(f"Arguments received: {n - 1}")
         while i < n:
             print(f"Argument {i}: {sys.argv[i]}")
             i += 1
