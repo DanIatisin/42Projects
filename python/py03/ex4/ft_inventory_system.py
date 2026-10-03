@@ -4,7 +4,11 @@ import sys
 def calc_percentage(inventory: dict[str, int]) -> None:
     total: int = sum(inventory.values())
     for name in inventory.keys():
-        percentage: float = round((inventory[name] / total) * 100, 1)
+        try:
+            percentage: float = round((inventory[name] / total) * 100, 1)
+        except ZeroDivisionError as e:
+            print(f"Error divison by zero: {e}")
+        continue
         print(f"Item {name} represents {percentage}%")
 
 
