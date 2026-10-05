@@ -2,32 +2,34 @@ import sys
 import typing
 
 
-def catch_error(name: str) -> typing.IO[str]:
+def read_archive(name: str) -> None:
     try:
-        f: typing.IO[str] = open(name, "r")
-    except FileNotFoundError as e:
-        print(f"Error opening file '{name}': {e}")
-        return
-    except PermissionError as e:
-        print(f"Error opening file '{name}': {e}")
-        return
+        f = open(name, "r")
     except OSError as e:
-        print(f"Erro opening file '{name}': {e}")
+        print(f"Error opening file '{name}': {e}")
         return
-    return f
+    try:
+        content = f.read()
+        print(f"{content}")
+    except (OSError, UnicodeDecodeError):
+        print(f"Error reading file '{name}': {e}")
+        return
+    finally:
+        f.close()
+        print()
+        print("---")
+        print(f"File '{name}' closed")
 
 
-def main() -> None:
+def main() -> None: 
     if len(sys.argv) != 2:
         print(f"Usage: {sys.argv[0]} <file>")
         return
-    name: str = sys.argv[1]
-    content: str = catch_error(name)
-    if content == None:
-        return
-    
-    print (f"{content}")
-
+    print("=== Cyber Archives Recovery ===")
+    print(f"Accessing file {sys.argv[1]}")
+    print("---")
+    print("")
+    read_archive(sys.argv[1])
 
 if __name__ == "__main__":
     main()
