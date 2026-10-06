@@ -5,7 +5,7 @@ def secure_archive(
     name: str,
     action: str = "read",
     content: str = ""
-    ) -> tuple[bool, str]:
+) -> tuple[bool, str]:
     try:
         if action == "read":
             with open(name, "r") as f:
