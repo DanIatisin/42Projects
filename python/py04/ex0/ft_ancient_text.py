@@ -1,5 +1,4 @@
 import sys
-import typing
 
 
 def read_archive(name: str) -> None:
@@ -11,7 +10,7 @@ def read_archive(name: str) -> None:
     try:
         content = f.read()
         print(f"{content}")
-    except (OSError, UnicodeDecodeError):
+    except (OSError, UnicodeDecodeError) as e:
         print(f"Error reading file '{name}': {e}")
         return
     finally:
@@ -21,7 +20,7 @@ def read_archive(name: str) -> None:
         print(f"File '{name}' closed")
 
 
-def main() -> None: 
+def main() -> None:
     if len(sys.argv) != 2:
         print(f"Usage: {sys.argv[0]} <file>")
         return
@@ -30,6 +29,7 @@ def main() -> None:
     print("---")
     print("")
     read_archive(sys.argv[1])
+
 
 if __name__ == "__main__":
     main()
