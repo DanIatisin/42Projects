@@ -24,13 +24,13 @@ def main() -> None:
     content: str = "Hello World 42"
     print("=== Cyber Archives Security ===\n")
     print("Using 'secure_archive' to read from a nonexistent file:")
-    print(f"{secure_archive("/not/existing/file")}\n")
+    print(f"{secure_archive('/not/existing/file')}\n")
     print("Using 'secure_archive' to read from an inaccessible file:")
-    print(f"{secure_archive("/etc/shadow")}\n")
+    print(f"{secure_archive('/etc/shadow')}\n")
     print("Using 'secure_archive' to read from a regular file:")
-    print(f"{secure_archive("file.txt")}\n")
+    print(f"{secure_archive('file.txt')}\n")
     print("Using 'secure_archive' to read from a regular file:")
-    print(f"{secure_archive("file2.txt", "write", content)}")
+    print(f"{secure_archive('file2.txt', 'write', content)}")
 
 
 if __name__ == "__main__":
