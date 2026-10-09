@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 from typing import Any
 
 
-class   DataProcessor(ABC):
+class DataProcessor(ABC):
     def __init__(self) -> None:
         self.pending: list[str] = []
         self.total_processed: int = 0
@@ -34,8 +34,9 @@ class NumericProcessor(DataProcessor):
                 if not isinstance(item, int | float):
                     return False
             return True
+        return False
 
-    def ingest(self, data: int | float | list[int | float]) ->None:
+    def ingest(self, data: int | float | list[int | float]) -> None:
         if not self.validate(data):
             raise TypeError("Improper numeric data")
         if not isinstance(data, list):
@@ -56,6 +57,7 @@ class TextProcessor(DataProcessor):
                 if not isinstance(item, str):
                     return False
             return True
+        return False
 
     def ingest(self, data: str | list[str]) -> None:
         if not self.validate(data):
@@ -79,7 +81,7 @@ class LogProcessor(DataProcessor):
         return True
 
     def validate(self, data: Any) -> bool:
-        if isinstance(data, dict):
+        if self._is_str_dict(data):
             return True
         if isinstance(data, list):
             for item in data:
@@ -119,8 +121,8 @@ def print_numeric() -> None:
     try:
         proc.ingest("foo")
     except TypeError as e:
-        print(f"Got exception: {e}") 
-    data: list[int] = [1, 2, 3, 4, 5]
+        print(f"Got exception: {e}")
+    data: list[int | float] = [1, 2, 3, 4, 5]
     print(f"Processing data: {data}")
     proc.ingest(data)
     print("Extracting 3 values...")
@@ -136,7 +138,7 @@ def print_text() -> None:
         "Trying to validate input '42': "
         f"{proc.validate(42)}"
         )
-    data: list[str] = ["Hello", "Nexus", "World"] 
+    data: list[str] = ["Hello", "Nexus", "World"]
     print(f"Processing data: {data}")
     proc.ingest(data)
     print("Extracting 1 value...")
@@ -151,12 +153,12 @@ def print_logs() -> None:
     print(f"Trying to validate input 'Hello': {proc.validate('Hello')}")
     data: list[dict] = [
         {
-        "log_level": "NOTICE", 
-        "log_message": "Connection to server"
+         "log_level": "NOTICE",
+         "log_message": "Connection to server"
         },
         {
-        "log_level": "ERROR", 
-        "log_message": "Unauthorized access!!"
+         "log_level": "ERROR",
+         "log_message": "Unauthorized access!!"
         }
         ]
     print(f"Processing data: {data}")
