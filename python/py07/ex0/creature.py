@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 
+
 class Creature(ABC):
     def __init__(self, name: str, cr_type: str):
         self.name = name
@@ -34,7 +35,7 @@ class Aquabub(Creature):
         super().__init__("Acquabub", "Water")
 
     def attack(self) -> str:
-        return f"{self.name} uses Water Gun"
+        return f"{self.name} uses Water Gun!"
 
 
 class Torragon(Creature):
@@ -42,25 +43,4 @@ class Torragon(Creature):
         super().__init__("Torragon", "Water")
 
     def attack(self) -> str:
-        return f"{self.name} uses Hydro Pump"
-
-
-# def main() -> None:
-#     cr_Flameling = Flameling()
-#     cr_Pyrodon = Pyrodon()
-#     cr_Aquabub = Aquabub()
-#     cr_Torragon = Torragon()
-
-#     print(cr_Flameling.describe())
-#     print(cr_Flameling.attack())
-#     print(cr_Pyrodon.describe())
-#     print(cr_Pyrodon.attack())
-#     print()
-#     print(cr_Aquabub.describe())
-#     print(cr_Aquabub.attack)
-#     print(cr_Torragon.describe())
-#     print(cr_Torragon.attack())
-
-
-# if __name__ == "__main__":
-#     main()
+        return f"{self.name} uses Hydro Pump!"

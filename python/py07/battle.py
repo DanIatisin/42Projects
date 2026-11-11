@@ -13,16 +13,17 @@ def testing_factory(factory: CreatureFactory) -> None:
     print()
 
 
-def testing_battle(factory1: CreatureFactory, factory2: CreatureFactory) -> None:
-    creature1: Creature = factory1.create_base()
-    creature2: Creature = factory2.create_base()
+def testing_battle(flame_factory: CreatureFactory,
+                   aqua_factory: CreatureFactory) -> None:
+    flame_creature: Creature = flame_factory.create_base()
+    aqua_creature: Creature = aqua_factory.create_base()
     print("Testing battle")
-    print(creature1.describe())
+    print(flame_creature.describe())
     print(" vs")
-    print(creature2.describe())
+    print(aqua_creature.describe())
     print(" fight!")
-    print(creature1.attack())
-    print(creature2.attack())
+    print(flame_creature.attack())
+    print(aqua_creature.attack())
 
 
 def main() -> None:
