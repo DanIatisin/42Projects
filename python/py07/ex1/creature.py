@@ -40,7 +40,7 @@ class Shiftling(Creature, TransformCapability):
 
     def revert(self) -> str:
         self.transformed = False
-        return f"{self.name} return to normal."
+        return f"{self.name} returns to normal."
 
 
 class Morphagon(Creature, TransformCapability):
