@@ -2,6 +2,7 @@ import sys
 import os
 import site
 
+
 def detect() -> None:
     if sys.prefix == sys.base_prefix:
         print("MATRIX STATUS: You're still plugged in")
