@@ -19,22 +19,23 @@ ETIQ: dict[str, dict[str, str | None]] = {
 
 
 def main() -> None:
-    for name, info in ETIQ.items():
-        alt_name: str | None = info['label']
-        msg_show: str | None = info['shown']
-        value: str | None = os.getenv(name)
-        if os.getenv(name) is None:
-            print(f"The key is missing: {name}")
-            print("Add the missing key with its value in your .env file")
-        elif (value == "" and info['default'] is None):
-            print(f"The value for key {name} is missing")
-            print("Add the value to its corresponding key in your .env file")
-        elif (value == "" and info['default'] is not None):
-            print(f"{alt_name}: {info['default']}")
-        elif msg_show is None:
-            print(f"{alt_name}: {value}")
-        else:
-            print(f"{alt_name}: {msg_show}")
+        for name, info in ETIQ.items():
+            alt_name: str | None = info['label']
+            msg_show: str | None = info['shown']
+            value: str | None = os.getenv(name)
+            if value is None:
+                print(f"Missing or misspelled variable name for: {name}"
+                    " / please add the variable in .env")
+            elif value == "":
+                if info['default'] is None:
+                    print(f"The value is missing for {name}"
+                        " / add the value to the variable in .env")
+                else:
+                    print(f"{alt_name}: {info['default']} / using default value")
+            elif msg_show is not None:
+                print(f"{alt_name}: {msg_show}")
+            else:
+                print(f"{alt_name}: {value}")
 
 
 if __name__ == "__main__":
