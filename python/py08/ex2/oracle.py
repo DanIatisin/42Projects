@@ -3,7 +3,7 @@ import os
 
 
 load_dotenv()
-ETIQ: dict[str, dict[str, str | None]] = {
+MANDATORY: dict[str, dict[str, str | None]] = {
                 "MATRIX_MODE": {"label": "Mode", "shown": None,
                                 "default": "development"},
                 "DATABASE_URL": {"label": "Database",
@@ -19,7 +19,7 @@ ETIQ: dict[str, dict[str, str | None]] = {
 
 
 def main() -> None:
-        for name, info in ETIQ.items():
+        for name, info in MANDATORY.items():
             alt_name: str | None = info['label']
             msg_show: str | None = info['shown']
             value: str | None = os.getenv(name)
