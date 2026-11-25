@@ -1,6 +1,5 @@
 import importlib.util
 from importlib.metadata import version, PackageNotFoundError
-import sys
 
 
 REQUIREMENTS: dict[str, str] = {
@@ -27,7 +26,7 @@ def check_dependencies() -> tuple[dict[str, str], dict[str, str]]:
             except PackageNotFoundError:
                 errors[module] = "package not found"
     return errors, installed_packages
- 
+
 
 def display_dependencies() -> bool:
     print("LOADING STATUS: Loading programs...")
