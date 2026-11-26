@@ -4,10 +4,10 @@ from datetime import datetime
 
 
 class ContactType(Enum):
-    RADIO: str = "radio"
-    VISUAL: str = "visual"
-    PHYSICAL: str = "physical"
-    TELEPATHIC: str = "telepathic"
+    RADIO= "radio"
+    VISUAL= "visual"
+    PHYSICAL= "physical"
+    TELEPATHIC= "telepathic"
 
 
 class AlienContact(BaseModel):
